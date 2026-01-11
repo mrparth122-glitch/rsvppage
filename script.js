@@ -4,7 +4,7 @@ const attendingField = document.getElementById("attendingField");
 const attendingDetails = document.getElementById("attendingDetails");
 
 function attend(choice) {
-  // Set hidden attending value
+  // Set hidden value
   attendingField.value = choice ? "Yes" : "No";
 
   // Hide the Yes/No buttons

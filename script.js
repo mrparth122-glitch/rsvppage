@@ -4,15 +4,15 @@ const attendingField = document.getElementById("attendingField");
 const attendingDetails = document.getElementById("attendingDetails");
 
 function attend(choice) {
-  // Set attending hidden field
+  // Set hidden attending value
   attendingField.value = choice ? "Yes" : "No";
 
-  // Hide Yes/No buttons
+  // Hide the Yes/No buttons
   step1.style.display = "none";
 
-  // Show form
+  // Show the form
   form.style.display = "block";
 
-  // Show Adults/Kids fields only if attending
+  // Show Adults/Kids only if attending
   attendingDetails.style.display = choice ? "block" : "none";
 }

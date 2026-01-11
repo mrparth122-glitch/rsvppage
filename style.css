@@ -6,47 +6,44 @@ html, body {
 
 body {
   font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url('background.jpg'); /* your local file */
+  background-image: url('background.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh;
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Card styling */
+/* Card */
 .card {
   background-color: rgba(255, 255, 255, 0.95);
   padding: 2em;
   border-radius: 12px;
-  box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.25);
   text-align: center;
   width: 90%;
   max-width: 400px;
 }
 
-/* Event subtitle */
+/* Subtitle */
 .event-subtitle {
   font-size: 1em;
   color: #ff5722;
-  margin: 0.3em 0 1em 0;
+  margin-bottom: 1em;
 }
 
 /* Buttons */
 button {
-  padding: 0.8em 1em;
+  padding: 0.8em;
   margin: 0.5em 0;
   border: none;
   border-radius: 8px;
   background-color: #ff7f50;
   color: white;
-  cursor: pointer;
   font-size: 1em;
-  width: 80%;
-  max-width: 250px;
+  cursor: pointer;
+  width: 100%;
 }
 
 button:hover {
@@ -55,14 +52,29 @@ button:hover {
 
 /* Inputs */
 input, label {
-  display: block;
-  width: 90%;
-  margin: 0.5em auto;
+  width: 100%;
+  margin: 0.4em 0;
   padding: 0.5em;
   font-size: 1em;
 }
 
-/* Hide initially */
+/* Calendar button */
+.calendar-btn {
+  display: inline-block;
+  margin-top: 1em;
+  padding: 0.8em 1em;
+  background-color: #4caf50;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.calendar-btn:hover {
+  background-color: #3e8e41;
+}
+
+/* Hidden */
 .hidden {
   display: none;
 }
@@ -71,11 +83,5 @@ input, label {
 @media (max-width: 500px) {
   .card {
     padding: 1.5em;
-  }
-  button {
-    width: 100%;
-  }
-  input {
-    width: 95%;
   }
 }

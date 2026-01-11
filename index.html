@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>You're Invited 🎉</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+  <h1>🎉 You're Invited!</h1>
+
+  <div id="step1">
+    <p>Will you attend?</p>
+    <button onclick="attend(true)">Yes 🎊</button>
+    <button onclick="attend(false)">No 😢</button>
+  </div>
+
+  <form id="rsvpForm" class="hidden">
+    <input type="text" id="firstName" placeholder="First name" required>
+    <input type="text" id="lastName" placeholder="Last name" required>
+
+    <label>Adults</label>
+    <input type="number" id="adults" min="1" value="1" required>
+
+    <label>Kids</label>
+    <input type="number" id="kids" min="0" value="0" required>
+
+    <button type="submit">Submit RSVP ✅</button>
+  </form>
+
+  <p id="thanks" class="hidden">Thank you for your response 💖</p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

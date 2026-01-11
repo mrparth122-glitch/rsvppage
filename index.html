@@ -12,29 +12,41 @@
   <h1>🎉 Mansi's Baby Shower 🎉</h1>
   <h2 class="event-subtitle">Patel family invites you to join the festivities</h2>
 
+  <!-- Step 1 -->
   <div id="step1">
     <p>Will you attend?</p>
     <button onclick="attend(true)">Yes 🎊</button>
     <button onclick="attend(false)">No 😢</button>
   </div>
 
-  <form id="rsvpForm" class="hidden" action="https://formspree.io/f/mpqqanwl" method="POST">
+  <!-- RSVP Form -->
+  <form id="rsvpForm" class="hidden"
+        action="https://formspree.io/f/mpqqanwl"
+        method="POST">
+
     <input type="hidden" name="attending" id="attendingField">
 
-    <!-- Full Name always visible -->
     <input type="text" name="fullName" placeholder="Full Name" required>
 
-    <!-- Only show adults/kids if attending -->
     <div id="attendingDetails">
       <label>Adults</label>
-      <input type="number" name="adults" min="1" value="1" required>
+      <input type="number" name="adults" min="1" value="1">
 
       <label>Kids</label>
-      <input type="number" name="kids" min="0" value="0" required>
+      <input type="number" name="kids" min="0" value="0">
     </div>
 
     <button type="submit">Submit RSVP ✅</button>
   </form>
+
+  <!-- After submit -->
+  <div id="afterSubmit" class="hidden">
+    <p>Thank you for your RSVP 💖</p>
+
+    <a href="mansi-baby-shower.ics" class="calendar-btn">
+      📅 Add Event to Your Calendar
+    </a>
+  </div>
 </div>
 
 <script src="script.js"></script>

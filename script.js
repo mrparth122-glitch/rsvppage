@@ -1,19 +1,18 @@
 const step1 = document.getElementById("step1");
 const form = document.getElementById("rsvpForm");
 const attendingField = document.getElementById("attendingField");
+const attendingDetails = document.getElementById("attendingDetails");
 const thanks = document.getElementById("thanks");
 
-// Show form only if attending
 function attend(choice) {
+  attendingField.value = choice ? "Yes" : "No";
+  step1.style.display = "none";
+  form.style.display = "block";
+
+  // Show adults/kids only if Yes
   if (choice) {
-    attendingField.value = "Yes";
-    step1.style.display = "none";
-    form.style.display = "block";
+    attendingDetails.style.display = "block";
   } else {
-    attendingField.value = "No";
-    form.style.display = "none";
-    step1.style.display = "none";
-    thanks.textContent = "Thanks for letting us know 💖";
-    thanks.style.display = "block";
+    attendingDetails.style.display = "none";
   }
 }

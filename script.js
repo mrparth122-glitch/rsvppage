@@ -4,7 +4,7 @@ const attendingField = document.getElementById("attendingField");
 const attendingDetails = document.getElementById("attendingDetails");
 
 function attend(choice) {
-  // Set hidden value
+  // Set hidden field for Formspree
   attendingField.value = choice ? "Yes" : "No";
 
   // Hide the Yes/No buttons
@@ -13,6 +13,6 @@ function attend(choice) {
   // Show the form
   form.style.display = "block";
 
-  // Show Adults/Kids only if attending
+  // Show Adults/Kids fields only if attending
   attendingDetails.style.display = choice ? "block" : "none";
 }

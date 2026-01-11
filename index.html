@@ -17,17 +17,19 @@
   </div>
 
 <form id="rsvpForm" action="https://formspree.io/f/mpqqanwl" method="POST">
-    <input type="text" id="firstName" placeholder="First name" required>
-    <input type="text" id="lastName" placeholder="Last name" required>
+  <input type="text" name="firstName" placeholder="First name" required>
+  <input type="text" name="lastName" placeholder="Last name" required>
 
-    <label>Adults</label>
-    <input type="number" id="adults" min="1" value="1" required>
+  <label>Adults</label>
+  <input type="number" name="adults" min="1" value="1" required>
 
-    <label>Kids</label>
-    <input type="number" id="kids" min="0" value="0" required>
+  <label>Kids</label>
+  <input type="number" name="kids" min="0" value="0" required>
 
-    <button type="submit">Submit RSVP ✅</button>
-  </form>
+  <input type="hidden" name="attending" id="attendingField" value="">
+
+  <button type="submit">Submit RSVP ✅</button>
+</form>
 
   <p id="thanks" class="hidden">Thank you for your response 💖</p>
 </div>

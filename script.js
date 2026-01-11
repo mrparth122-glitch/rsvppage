@@ -16,19 +16,33 @@ function attend(choice) {
   attendingDetails.style.display = choice ? "block" : "none";
 }
 
-/* Handle submit */
-form.addEventListener("submit", function () {
-  // Let Formspree submit normally
-  // Then show thank-you + calendar link (only if YES)
+form.addEventListener("submit", function (e) {
+  e.preventDefault(); // ⛔ STOP page redirect
 
-  setTimeout(() => {
-    form.classList.add("hidden");
+  const formData = new FormData(form);
 
-    if (isAttending) {
-      afterSubmit.classList.remove("hidden");
-    } else {
-      afterSubmit.innerHTML = "<p>Thank you for letting us know 💖</p>";
-      afterSubmit.classList.remove("hidden");
+  fetch("https://formspree.io/f/mpqqanwl", {
+    method: "POST",
+    body: formData,
+    headers: {
+      Accept: "application/json"
     }
-  }, 300);
+  })
+  .then(response => {
+    if (response.ok) {
+      form.classList.add("hidden");
+
+      if (isAttending) {
+        afterSubmit.classList.remove("hidden");
+      } else {
+        afterSubmit.innerHTML = "<p>Thank you for letting us know 💖</p>";
+        afterSubmit.classList.remove("hidden");
+      }
+    } else {
+      alert("Something went wrong. Please try again.");
+    }
+  })
+  .catch(() => {
+    alert("Submission failed. Please check your connection.");
+  });
 });

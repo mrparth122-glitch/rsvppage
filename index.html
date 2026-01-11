@@ -10,27 +10,30 @@
 <div class="card">
   <h1>🎉 You're Invited!</h1>
 
+  <!-- Step 1: Attend Yes/No -->
   <div id="step1">
     <p>Will you attend?</p>
     <button onclick="attend(true)">Yes 🎊</button>
     <button onclick="attend(false)">No 😢</button>
   </div>
 
-<form id="rsvpForm" action="https://formspree.io/f/mpqqanwl" method="POST">
-  <input type="text" name="firstName" placeholder="First name" required>
-  <input type="text" name="lastName" placeholder="Last name" required>
+  <!-- RSVP Form -->
+  <form id="rsvpForm" class="hidden" action="https://formspree.io/f/mpqqanwl" method="POST">
+    <input type="hidden" name="attending" id="attendingField" value="">
 
-  <label>Adults</label>
-  <input type="number" name="adults" min="1" value="1" required>
+    <input type="text" name="firstName" placeholder="First name" required>
+    <input type="text" name="lastName" placeholder="Last name" required>
 
-  <label>Kids</label>
-  <input type="number" name="kids" min="0" value="0" required>
+    <label>Adults</label>
+    <input type="number" name="adults" min="1" value="1" required>
 
-  <input type="hidden" name="attending" id="attendingField" value="">
+    <label>Kids</label>
+    <input type="number" name="kids" min="0" value="0" required>
 
-  <button type="submit">Submit RSVP ✅</button>
-</form>
+    <button type="submit">Submit RSVP ✅</button>
+  </form>
 
+  <!-- Thank-you message -->
   <p id="thanks" class="hidden">Thank you for your response 💖</p>
 </div>
 

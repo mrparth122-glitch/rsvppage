@@ -11,12 +11,14 @@ const redirectField = document.getElementById("redirectField");
 
 let isAttending = false;
 
+// Show RSVP section
 showRsvpBtn.addEventListener("click", () => {
   previewView.classList.add("hidden");
   rsvpView.classList.remove("hidden");
   rsvpView.scrollIntoView({ behavior: "smooth" });
 });
 
+// Yes / No logic
 window.attend = function (choice) {
   isAttending = choice;
   attendingField.value = choice ? "Yes" : "No";
@@ -26,6 +28,7 @@ window.attend = function (choice) {
   attendingDetails.style.display = choice ? "grid" : "none";
 };
 
+// Set redirect before submit
 form.addEventListener("submit", () => {
   redirectField.value =
     "https://mrparth122-glitch.github.io/rsvppage/?submitted=1&attending=" +

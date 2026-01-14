@@ -1,7 +1,6 @@
 html, body {
-  height: 100%;
-  width: 100%;
   margin: 0;
+  padding: 0;
 }
 
 body {
@@ -9,9 +8,7 @@ body {
   background: #f7f3ee;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
   padding: 16px 12px;
-  box-sizing: border-box;
 }
 
 .page {
@@ -21,159 +18,137 @@ body {
   gap: 14px;
 }
 
-/* ---------- Preview (envelope + invite thumbnail) ---------- */
-.preview-view {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
+/* ---------- Preview ---------- */
 .preview-card {
-  position: relative;
-  width: 100%;
-  height: 220px;                 /* fixed preview height */
-  border-radius: 18px;
   background: #ffe9e1;
+  border-radius: 18px;
+  padding: 18px;
   box-shadow: 0 14px 34px rgba(0,0,0,0.14);
-  overflow: hidden;
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
 }
 
-/* simple envelope look (no animation) */
-.envelope-look {
-  position: absolute;
-  inset: 16px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, rgba(255,127,80,0.10), rgba(255,87,34,0.08));
-  border: 2px solid rgba(0,0,0,0.04);
-}
-
-/* invitation thumbnail (like your example) */
 .invite-thumb {
-  position: relative;
-  width: min(72%, 280px);
-  height: 86%;
+  width: min(70%, 280px);
   background: white;
   border-radius: 14px;
-  box-shadow: 0 14px 34px rgba(0,0,0,0.18);
   overflow: hidden;
-  display: grid;
-  place-items: center;
+  box-shadow: 0 14px 34px rgba(0,0,0,0.18);
 }
 
 .invite-thumb img {
   width: 100%;
-  height: 100%;
-  object-fit: contain;   /* always show full invite inside the thumbnail */
-  background: white;
+  height: auto;
+  display: block;
 }
 
-/* RSVP button */
-.actions button {
-  width: 100%;
-}
-
-/* Buttons */
+/* ---------- Buttons ---------- */
 button {
+  width: 100%;
   padding: 0.95em;
   border: none;
-  border-radius: 12px;
-  background-color: #ff7f50;
-  color: white;
+  border-radius: 14px;
   font-size: 1.05em;
   cursor: pointer;
-  width: 100%;
+  background-color: #ff7f50;
+  color: white;
   transition: background-color 0.2s ease, transform 0.05s ease;
 }
 
 button:hover { background-color: #ff5722; }
 button:active { transform: scale(0.99); }
 
+.actions button {
+  margin-top: 6px;
+}
+
 .hidden { display: none; }
 
 /* ---------- RSVP Card ---------- */
-.rsvp-view { width: 100%; }
-
 .card {
-  background-color: rgba(255, 255, 255, 0.96);
-  padding: 22px 22px;
-  border-radius: 16px;
-  box-shadow: 0px 12px 28px rgba(0,0,0,0.18);
+  background: white;
+  padding: 22px;
+  border-radius: 18px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
   text-align: center;
-  width: 100%;
-}
-
-.card h1 {
-  margin: 0 0 6px 0;
-  font-size: 1.7em;
 }
 
 .event-subtitle {
-  font-size: 1em;
   color: #ff5722;
-  margin: 0 0 14px 0;
+  margin-bottom: 14px;
   font-weight: 600;
 }
 
-/* Form */
+/* ---------- Yes / No (POLISHED FIX) ---------- */
+.choice-group {
+  margin-top: 10px;
+}
+
+.question {
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.choice {
+  margin: 10px 0;          /* separation */
+  border-radius: 14px;
+  font-size: 1.05em;
+}
+
+/* Primary / secondary distinction */
+.choice.yes {
+  background-color: #ff7f50;
+}
+
+.choice.no {
+  background-color: #ffa07a;
+}
+
+/* ---------- Form ---------- */
 .form-group {
   text-align: left;
   margin-top: 10px;
 }
 
-.field { display: flex; flex-direction: column; }
-
 .two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
-  align-items: start;
-  margin-top: 10px;
 }
 
 label {
   font-weight: 700;
-  font-size: 0.95em;
-  margin: 10px 0 6px 0;
-  color: #222;
+  margin-bottom: 6px;
+  display: block;
 }
 
-input[type="text"], input[type="number"] {
+input {
   width: 100%;
-  padding: 12px 12px;
+  padding: 12px;
   border-radius: 10px;
-  border: 1px solid rgba(0,0,0,0.18);
+  border: 1px solid rgba(0,0,0,0.2);
   font-size: 1em;
-  box-sizing: border-box;
-  outline: none;
-  background: white;
 }
 
-input[type="text"]:focus, input[type="number"]:focus {
-  border-color: rgba(255, 87, 34, 0.55);
-  box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.15);
-}
-
-/* Calendar button */
+/* Calendar */
 .calendar-btn {
   display: inline-block;
   margin-top: 14px;
   padding: 0.9em 1em;
-  background-color: #4caf50;
+  background: #4caf50;
   color: white;
-  text-decoration: none;
   border-radius: 10px;
-  font-weight: 800;
+  text-decoration: none;
+  font-weight: 700;
 }
 
-.calendar-btn:hover { background-color: #3e8e41; }
+.calendar-btn:hover {
+  background: #3e8e41;
+}
 
-/* Mobile tweaks */
+/* Mobile */
 @media (max-width: 520px) {
-  .two-col { grid-template-columns: 1fr; }
-  .card { padding: 18px 16px; }
-  .preview-card { height: 200px; }
-  .invite-thumb { width: min(78%, 260px); }
+  .two-col {
+    grid-template-columns: 1fr;
+  }
 }

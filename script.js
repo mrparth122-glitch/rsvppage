@@ -1,26 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // ---------- Invite animation controls ----------
-  const inviteView = document.getElementById("inviteView");
+  const showRsvpBtn = document.getElementById("showRsvpBtn");
   const rsvpView = document.getElementById("rsvpView");
-  const envelope = document.getElementById("envelope");
-  const openInviteBtn = document.getElementById("openInviteBtn");
-  const rsvpBtn = document.getElementById("rsvpBtn");
 
-  if (openInviteBtn && envelope && rsvpBtn && inviteView && rsvpView) {
-    openInviteBtn.addEventListener("click", () => {
-      envelope.classList.add("open");
-      rsvpBtn.classList.remove("hidden");
-    });
-
-    rsvpBtn.addEventListener("click", () => {
-      inviteView.classList.add("hidden");
-      rsvpView.classList.remove("hidden");
-      // Scroll to top on mobile after switching views
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  }
-
-  // ---------- RSVP logic ----------
   const step1 = document.getElementById("step1");
   const form = document.getElementById("rsvpForm");
   const attendingField = document.getElementById("attendingField");
@@ -31,6 +12,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let isAttending = false;
 
+  // Show RSVP section
+  if (showRsvpBtn && rsvpView) {
+    showRsvpBtn.addEventListener("click", () => {
+      rsvpView.classList.remove("hidden");
+      rsvpView.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
   // Make attend available to inline onclick
   window.attend = function (choice) {
     isAttending = choice;
@@ -38,10 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     step1.style.display = "none";
     form.classList.remove("hidden");
-
     attendingDetails.style.display = choice ? "block" : "none";
 
-    // If "No", optionally set counts to 0
+    // If "No", set counts to 0 (optional)
     if (!choice) {
       const adults = document.getElementById("adults");
       const kids = document.getElementById("kids");
@@ -50,18 +38,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // After submission, Formspark redirects back with ?submitted=1&attending=Yes/No
+  // After submission redirect: show thank-you
   (function showThanksIfRedirected() {
     const params = new URLSearchParams(window.location.search);
     const submitted = params.get("submitted");
     const attending = params.get("attending");
 
     if (submitted === "1") {
-      // Ensure RSVP view is visible after redirect
-      if (inviteView && rsvpView) {
-        inviteView.classList.add("hidden");
-        rsvpView.classList.remove("hidden");
-      }
+      // Ensure RSVP section is visible
+      if (rsvpView) rsvpView.classList.remove("hidden");
 
       if (step1) step1.style.display = "none";
       if (form) form.classList.add("hidden");
@@ -74,6 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (afterSubmit) afterSubmit.classList.remove("hidden");
+
+      // Scroll to RSVP card
+      rsvpView.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   })();
 

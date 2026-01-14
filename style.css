@@ -10,35 +10,51 @@ body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 18px 12px;
+  padding: 14px 12px;
   box-sizing: border-box;
 }
 
+/* Page container */
 .page {
   width: min(96vw, 680px);
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
-/* Invitation image */
+/* Invitation card */
 .invite-panel {
   background: white;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 14px 34px rgba(0,0,0,0.14);
+
+  /* key: keep it from becoming huge */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
+/* Invitation image */
 .invite-img {
   width: 100%;
   height: auto;
   display: block;
-  /* shows full invite cleanly */
-  object-fit: contain;
   background: white;
+
+  /* key: constrain on phones */
+  max-height: 52vh;        /* image never takes more than ~half screen */
+  object-fit: contain;     /* show whole invite without cropping */
 }
 
-/* Actions */
+/* RSVP button always visible feeling */
+.actions {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
 .actions button {
   width: 100%;
 }
@@ -46,7 +62,6 @@ body {
 /* Buttons */
 button {
   padding: 0.95em;
-  margin: 0;
   border: none;
   border-radius: 12px;
   background-color: #ff7f50;
@@ -143,4 +158,7 @@ input[type="text"]:focus, input[type="number"]:focus {
 @media (max-width: 520px) {
   .two-col { grid-template-columns: 1fr; }
   .card { padding: 18px 16px; }
+
+  /* slightly smaller invite on very small screens */
+  .invite-img { max-height: 46vh; }
 }

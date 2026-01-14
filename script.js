@@ -6,7 +6,7 @@ const afterSubmit = document.getElementById("afterSubmit");
 
 let isAttending = false;
 
-// 👇 Make function global
+// Make attend available to inline onclick
 window.attend = function (choice) {
   isAttending = choice;
   attendingField.value = choice ? "Yes" : "No";
@@ -17,33 +17,43 @@ window.attend = function (choice) {
   attendingDetails.style.display = choice ? "block" : "none";
 };
 
-form.addEventListener("submit", function (e) {
+form.addEventListener("submit", async function (e) {
   e.preventDefault();
 
+  // Build JSON payload from the form fields
   const formData = new FormData(form);
+  const payload = Object.fromEntries(formData.entries());
 
-  fetch("https://submit-form.com/7OshMYxJq", {
-    method: "POST",
-    body: formData,
-    headers: {
-      Accept: "application/json"
+  try {
+    const res = await fetch("https://submit-form.com/7OshMYxJq", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    // Helpful debug info
+    const text = await res.text();
+    console.log("Formspark status:", res.status);
+    console.log("Formspark raw response:", text);
+
+    if (!res.ok) {
+      alert("Something went wrong. Please try again.");
+      return;
     }
-  })
-  .then(response => response.json())
-  .then(data => {
-    console.log("Formspark response:", data);
 
     form.classList.add("hidden");
-
     if (isAttending) {
       afterSubmit.classList.remove("hidden");
     } else {
       afterSubmit.innerHTML = "<p>Thank you for letting us know 💖</p>";
       afterSubmit.classList.remove("hidden");
     }
-  })
-  .catch(error => {
-    console.error("Submission failed:", error);
-    alert("Submission failed. Check console.");
-  });
+
+  } catch (err) {
+    console.error("Submission failed:", err);
+    alert("Submission failed. Please check your connection.");
+  }
 });

@@ -27,13 +27,34 @@
 
     <input type="hidden" name="attending" id="attendingField">
 
-    <label for="fullName">Full Name</label>
-    <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
-
-    <div id="attendingDetails">
-      <label for="adults">Adults</label>
-      <input type="number" id="adults" name="adults" min="1" value="1">
-
-      <label for="kids">Kids</label>
-      <input type="number" id="kids" name="kids" min="0" value="0">
+    <div class="form-group">
+      <label for="fullName">Full Name</label>
+      <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
     </div>
+
+    <div id="attendingDetails" class="form-group">
+      <div class="sub-group">
+        <label for="adults">Adults</label>
+        <input type="number" id="adults" name="adults" min="1" value="1">
+      </div>
+      <div class="sub-group">
+        <label for="kids">Kids</label>
+        <input type="number" id="kids" name="kids" min="0" value="0">
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn">Submit RSVP ✅</button>
+  </form>
+
+  <div id="afterSubmit" class="hidden">
+    <p>Thank you for your RSVP 💖</p>
+
+    <a href="/rsvppage/mansi-baby-shower.ics" class="calendar-btn">
+      📅 Add Event to Your Calendar
+    </a>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

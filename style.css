@@ -6,35 +6,102 @@ html, body {
 
 body {
   font-family: Arial, sans-serif;
-  background-image: url('background.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
+  background: #f7f3ee;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  /* Gives the poster some breathing room on small screens */
-  padding: 24px 14px;
+  padding: 18px 12px;
   box-sizing: border-box;
 }
 
-/* Card */
+/* ---------- Invite view ---------- */
+.invite-view {
+  width: min(95vw, 520px);
+  text-align: center;
+}
+
+.title {
+  margin: 14px 0 6px 0;
+  font-size: 1.6em;
+}
+
+.subtitle {
+  margin: 0 0 14px 0;
+  color: #555;
+}
+
+.invite-actions button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Envelope */
+.envelope {
+  position: relative;
+  width: min(90vw, 520px);
+  height: min(55vw, 320px);
+  margin: 0 auto;
+  perspective: 900px;
+}
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+  border: 2px solid rgba(0,0,0,0.07);
+}
+
+.envelope-front {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(255,127,80,0.15), rgba(255,87,34,0.12));
+  overflow: hidden;
+  border: 2px solid rgba(0,0,0,0.06);
+}
+
+/* Invite card that slides out */
+.invite-card {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(34%);
+  width: 92%;
+  height: 92%;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
+  transition: transform 800ms ease;
+  background: #fff;
+}
+
+.invite-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   /* ensures full invite visible */
+  background: #fff;
+}
+
+/* Open state */
+.envelope.open .invite-card {
+  transform: translateX(-50%) translateY(-18%);
+}
+
+/* ---------- RSVP card ---------- */
+.rsvp-view {
+  width: min(95vw, 520px);
+}
+
 .card {
-  background-color: rgba(255, 255, 255, 0.94);
+  background-color: rgba(255, 255, 255, 0.96);
   padding: 22px 22px;
   border-radius: 14px;
   box-shadow: 0px 10px 28px rgba(0,0,0,0.22);
   text-align: center;
-  width: min(92vw, 420px);
+  width: 100%;
   backdrop-filter: blur(3px);
-}
-
-/* Headings */
-.card h1 {
-  margin: 0 0 6px 0;
-  font-size: 1.6em;
 }
 
 .event-subtitle {
@@ -44,7 +111,6 @@ body {
   font-weight: 600;
 }
 
-/* Buttons */
 button {
   padding: 0.85em;
   margin: 0.45em 0;
@@ -58,26 +124,18 @@ button {
   transition: transform 0.05s ease, background-color 0.2s ease;
 }
 
-button:hover {
-  background-color: #ff5722;
-}
+button:hover { background-color: #ff5722; }
+button:active { transform: scale(0.99); }
 
-button:active {
-  transform: scale(0.99);
-}
+.hidden { display: none; }
 
-/* Form layout */
 .form-group {
   text-align: left;
   margin-top: 10px;
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
-}
+.field { display: flex; flex-direction: column; }
 
-/* Two-column row for Adults/Kids (fixes shifting) */
 .two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -93,8 +151,7 @@ label {
   color: #222;
 }
 
-input[type="text"],
-input[type="number"] {
+input[type="text"], input[type="number"] {
   width: 100%;
   padding: 12px 12px;
   border-radius: 10px;
@@ -105,13 +162,11 @@ input[type="number"] {
   background: white;
 }
 
-input[type="text"]:focus,
-input[type="number"]:focus {
+input[type="text"]:focus, input[type="number"]:focus {
   border-color: rgba(255, 87, 34, 0.55);
   box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.15);
 }
 
-/* Calendar button */
 .calendar-btn {
   display: inline-block;
   margin-top: 14px;
@@ -123,34 +178,8 @@ input[type="number"]:focus {
   font-weight: 800;
 }
 
-.calendar-btn:hover {
-  background-color: #3e8e41;
-}
+.calendar-btn:hover { background-color: #3e8e41; }
 
-/* Hidden */
-.hidden {
-  display: none;
-}
-
-/* Mobile polish */
-@media (max-width: 500px) {
-  body {
-    padding: 18px 12px;
-  }
-
-  .card {
-    width: min(94vw, 420px);
-    padding: 18px 16px;
-    border-radius: 14px;
-  }
-
-  .card h1 {
-    font-size: 1.45em;
-  }
-
-  /* Stack Adults/Kids on very small screens */
-  .two-col {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
+@media (max-width: 520px) {
+  .two-col { grid-template-columns: 1fr; }
 }

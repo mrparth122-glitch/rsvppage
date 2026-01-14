@@ -17,7 +17,7 @@ function attend(choice) {
 }
 
 form.addEventListener("submit", function (e) {
-  e.preventDefault(); // Stop page reload
+  e.preventDefault(); // prevent page reload
 
   const formData = new FormData(form);
 
@@ -28,21 +28,20 @@ form.addEventListener("submit", function (e) {
       Accept: "application/json"
     }
   })
-  .then(response => {
-    if (response.ok) {
-      form.classList.add("hidden");
+  .then(response => response.json())
+  .then(data => {
+    console.log("Formspark response:", data); // Verify submission in console
+    form.classList.add("hidden");
 
-      if (isAttending) {
-        afterSubmit.classList.remove("hidden");
-      } else {
-        afterSubmit.innerHTML = "<p>Thank you for letting us know 💖</p>";
-        afterSubmit.classList.remove("hidden");
-      }
+    if (isAttending) {
+      afterSubmit.classList.remove("hidden");
     } else {
-      alert("Something went wrong. Please try again.");
+      afterSubmit.innerHTML = "<p>Thank you for letting us know 💖</p>";
+      afterSubmit.classList.remove("hidden");
     }
   })
-  .catch(() => {
-    alert("Submission failed. Please check your connection.");
+  .catch(error => {
+    console.error("Submission failed:", error);
+    alert("Submission failed. Check console.");
   });
 });

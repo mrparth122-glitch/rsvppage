@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mansi's Baby Shower RSVP</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- INVITE VIEW -->
+<!-- INVITATION VIEW -->
 <section id="inviteView" class="invite-view">
-  <div class="envelope" id="envelope">
-    <div class="envelope-back"></div>
-    <div class="envelope-front"></div>
+  <div class="envelope-wrap">
+    <div id="envelope" class="envelope">
+      <div class="env-back"></div>
 
-    <!-- The invitation "card" that slides out -->
-    <div class="invite-card" id="inviteCard">
-      <!-- Use your existing background.jpg as the actual invite image -->
-      <img src="background.jpg" alt="Invitation" class="invite-img">
+      <!-- invitation card that slides out -->
+      <div id="inviteCard" class="invite-card">
+        <img src="background.jpg" alt="Invitation" class="invite-img" />
+      </div>
+
+      <div class="env-front"></div>
+      <div class="env-flap"></div>
     </div>
   </div>
 
   <div class="invite-actions">
-    <h1 class="title">Mansi's Baby Shower</h1>
-    <p class="subtitle">Tap to open the invitation, then RSVP</p>
     <button type="button" id="openInviteBtn">Open Invitation ✉️</button>
     <button type="button" id="rsvpBtn" class="hidden">RSVP Now ✅</button>
   </div>
@@ -44,32 +45,35 @@
     <form
       id="rsvpForm"
       class="hidden"
-      method="POST"
       action="https://submit-form.com/7OshMYxJq"
+      method="POST"
     >
       <!-- Honeypot -->
       <label style="display:none">
         Do not fill
-        <input type="text" name="_hp" aria-hidden="true" tabindex="-1" autocomplete="off">
+        <input type="text" name="_hp" aria-hidden="true" tabindex="-1" autocomplete="off" />
       </label>
 
+      <!-- Redirect back after submit -->
       <input type="hidden" name="_redirect" id="redirectField"
-        value="https://mrparth122-glitch.github.io/rsvppage/?submitted=1">
-      <input type="hidden" name="attending" id="attendingField">
+        value="https://mrparth122-glitch.github.io/rsvppage/?submitted=1" />
+
+      <input type="hidden" name="attending" id="attendingField" />
 
       <div class="form-group">
         <label for="fullName">Full Name</label>
-        <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
+        <input type="text" id="fullName" name="fullName" placeholder="Full Name" required />
       </div>
 
       <div id="attendingDetails" class="form-group two-col">
         <div class="field">
           <label for="adults">Adults</label>
-          <input type="number" id="adults" name="adults" min="1" value="1">
+          <input type="number" id="adults" name="adults" min="1" value="1" />
         </div>
+
         <div class="field">
           <label for="kids">Kids</label>
-          <input type="number" id="kids" name="kids" min="0" value="0">
+          <input type="number" id="kids" name="kids" min="0" value="0" />
         </div>
       </div>
 

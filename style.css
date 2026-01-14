@@ -12,7 +12,7 @@ body {
   text-align: center;
 }
 
-/* ---------- INVITATION IMAGE ---------- */
+/* Invitation image */
 .invite-container {
   background: white;
   border-radius: 16px;
@@ -23,33 +23,39 @@ body {
 
 .invite-container img {
   width: 100%;
-  max-height: 55vh;       /* KEY FIX */
-  object-fit: contain;   /* SHOW FULL IMAGE */
+  max-height: 55vh;
+  object-fit: contain;
   display: block;
 }
 
-/* ---------- BUTTONS ---------- */
+/* Buttons (global) */
 button {
   width: 100%;
   padding: 14px;
   margin-top: 10px;
   border: none;
-  border-radius: 14px;
+  border-radius: 16px;
   background: #ff7f50;
   color: white;
   font-size: 1.05em;
+  font-weight: 700;
   cursor: pointer;
+  transition: background 0.2s ease, transform 0.05s ease;
 }
 
 button:hover {
   background: #ff5722;
 }
 
+button:active {
+  transform: scale(0.98);
+}
+
 .hidden {
   display: none;
 }
 
-/* ---------- RSVP CARD ---------- */
+/* RSVP Card */
 .card {
   background: white;
   padding: 22px;
@@ -63,23 +69,37 @@ button:hover {
   margin-bottom: 16px;
 }
 
-/* ---------- YES / NO ---------- */
+/* YES / NO buttons – FIXED */
 .choice-group {
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .choice {
-  margin: 10px 0;
+  margin: 14px 0;                 /* real separation */
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  border: 2px solid rgba(0,0,0,0.06);
 }
 
+/* Yes = primary */
+.choice.yes {
+  background: #ff7f50;
+  color: white;
+}
+
+/* No = clearly secondary */
 .choice.no {
-  background: #ffa07a;
+  background: #ffd0c2;
+  color: #7a2f1f;
 }
 
-/* ---------- FORM ---------- */
+.choice.no:hover {
+  background: #ffc2b1;
+}
+
+/* Form */
 .form-group {
   text-align: left;
-  margin-top: 12px;
+  margin-top: 14px;
 }
 
 input {
@@ -88,6 +108,7 @@ input {
   margin-top: 6px;
   border-radius: 10px;
   border: 1px solid #ccc;
+  font-size: 1em;
 }
 
 .two-col {
@@ -96,6 +117,7 @@ input {
   gap: 12px;
 }
 
+/* Calendar button */
 .calendar-btn {
   display: inline-block;
   margin-top: 14px;
@@ -104,9 +126,10 @@ input {
   color: white;
   border-radius: 10px;
   text-decoration: none;
+  font-weight: 700;
 }
 
-/* ---------- MOBILE ---------- */
+/* Mobile */
 @media (max-width: 520px) {
   .two-col {
     grid-template-columns: 1fr;

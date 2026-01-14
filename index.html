@@ -9,15 +9,21 @@
 <body>
 
 <div class="page">
-  <!-- INVITATION -->
-  <div class="invite-panel">
-    <img src="background.jpg" alt="Invitation" class="invite-img" />
-  </div>
 
-  <!-- RSVP NOW BUTTON -->
-  <div class="actions">
-    <button type="button" id="showRsvpBtn">RSVP Now ✅</button>
-  </div>
+  <!-- PREVIEW (shown first, hidden after user clicks RSVP Now) -->
+  <section id="previewView" class="preview-view">
+    <div class="preview-card">
+      <div class="envelope-look" aria-hidden="true"></div>
+
+      <div class="invite-thumb">
+        <img src="background.jpg" alt="Invitation preview" />
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="button" id="showRsvpBtn">RSVP Now ✅</button>
+    </div>
+  </section>
 
   <!-- RSVP FORM CARD -->
   <section id="rsvpView" class="rsvp-view hidden">
@@ -75,6 +81,7 @@
       </div>
     </div>
   </section>
+
 </div>
 
 <script src="script.js"></script>

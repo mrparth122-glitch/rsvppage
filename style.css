@@ -50,7 +50,7 @@ button:hover {
   background-color: #ff5722;
 }
 
-/* Inputs + labels */
+/* Inputs */
 input, label {
   width: 100%;
   margin: 0.4em 0;
@@ -66,13 +66,12 @@ label {
   text-align: left;
 }
 
-/* New: nicer spacing groups */
+/* Groups */
 .form-group {
   text-align: left;
-  margin-top: 0.5em;
 }
 
-/* New: Adults/Kids side-by-side */
+/* Adults / Kids side-by-side on desktop */
 .sub-group {
   display: inline-block;
   width: 48%;

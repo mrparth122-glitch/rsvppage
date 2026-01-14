@@ -17,11 +17,11 @@ function attend(choice) {
 }
 
 form.addEventListener("submit", function (e) {
-  e.preventDefault(); // ⛔ STOP page redirect
+  e.preventDefault(); // Prevent page reload
 
   const formData = new FormData(form);
 
-  fetch("https://formspree.io/f/mpqqanwl", {
+  fetch("https://submit.formspark.io/7OshMYxJq", {
     method: "POST",
     body: formData,
     headers: {

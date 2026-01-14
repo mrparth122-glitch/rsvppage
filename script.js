@@ -9,25 +9,25 @@ const attendingDetails = document.getElementById("attendingDetails");
 const afterSubmit = document.getElementById("afterSubmit");
 const redirectField = document.getElementById("redirectField");
 
-let isAttending = false;
+const adultsField = document.getElementById("adultsField");
+const kidsField = document.getElementById("kidsField");
 
-// ✅ On page load: if redirected back after submit, show thank-you view
+let isAttending = null; // true/false
+
+// ✅ Handle redirect after submit
 (function handleRedirectThankYou() {
   const params = new URLSearchParams(window.location.search);
-  const submitted = params.get("submitted");     // "1"
-  const attending = params.get("attending");     // "Yes" or "No"
+  const submitted = params.get("submitted");
+  const attending = params.get("attending");
 
   if (submitted === "1") {
-    // Hide preview, show RSVP section
     previewView.classList.add("hidden");
     rsvpView.classList.remove("hidden");
 
-    // Hide choices + form, show thank you
     if (step1) step1.style.display = "none";
     if (form) form.classList.add("hidden");
 
     if (afterSubmit) {
-      // Customize message for "No"
       if (attending === "No") {
         afterSubmit.innerHTML = `<p>Thank you for letting us know 💖</p>`;
       } else {
@@ -40,38 +40,46 @@ let isAttending = false;
       }
       afterSubmit.classList.remove("hidden");
     }
-
-    // Optional: scroll into view nicely
-    rsvpView.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 })();
 
-// Show RSVP section when user clicks RSVP Now
+// Show RSVP section
 showRsvpBtn.addEventListener("click", () => {
   previewView.classList.add("hidden");
   rsvpView.classList.remove("hidden");
   rsvpView.scrollIntoView({ behavior: "smooth" });
 });
 
-// Yes / No logic
+// ✅ Yes/No selection
 window.attend = function (choice) {
   isAttending = choice;
   attendingField.value = choice ? "Yes" : "No";
 
   step1.style.display = "none";
   form.classList.remove("hidden");
-  attendingDetails.style.display = choice ? "grid" : "none";
 
-  // If No, set counts to 0 (optional)
-  if (!choice) {
-    const adultsInput = document.querySelector('input[name="adults"]');
-    const kidsInput = document.querySelector('input[name="kids"]');
-    if (adultsInput) adultsInput.value = 0;
-    if (kidsInput) kidsInput.value = 0;
+  if (choice) {
+    // YES: show fields and enable them
+    attendingDetails.style.display = "grid";
+    adultsField.disabled = false;
+    kidsField.disabled = false;
+
+    // set safe defaults
+    if (!adultsField.value) adultsField.value = 1;
+    if (!kidsField.value) kidsField.value = 0;
+  } else {
+    // NO: hide fields and disable them so they never block submit
+    attendingDetails.style.display = "none";
+
+    adultsField.value = 0;
+    kidsField.value = 0;
+
+    adultsField.disabled = true;
+    kidsField.disabled = true;
   }
 };
 
-// Set redirect before submit so we come back with submitted=1 and attending=Yes/No
+// ✅ Set redirect before submit (so thank-you works)
 form.addEventListener("submit", () => {
   const attendingValue = attendingField.value || (isAttending ? "Yes" : "No");
   redirectField.value =

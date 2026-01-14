@@ -11,7 +11,7 @@
 <div class="page">
 
   <!-- INVITATION PREVIEW -->
-  <section id="previewView" class="preview-view">
+  <section id="previewView">
     <div class="invite-container">
       <img src="background.jpg" alt="Invitation" />
     </div>
@@ -27,8 +27,14 @@
 
       <div id="step1" class="choice-group">
         <p class="question">Will you attend?</p>
-        <button class="choice yes" onclick="attend(true)">Yes 🎊</button>
-        <button class="choice no" onclick="attend(false)">No 😢</button>
+
+        <button type="button" class="choice yes" onclick="attend(true)">
+          Yes 🎊
+        </button>
+
+        <button type="button" class="choice no" onclick="attend(false)">
+          No 😢
+        </button>
       </div>
 
       <form

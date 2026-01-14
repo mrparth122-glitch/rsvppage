@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const showRsvpBtn = document.getElementById("showRsvpBtn");
+  const previewView = document.getElementById("previewView");
   const rsvpView = document.getElementById("rsvpView");
+  const showRsvpBtn = document.getElementById("showRsvpBtn");
 
   const step1 = document.getElementById("step1");
   const form = document.getElementById("rsvpForm");
@@ -12,15 +13,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let isAttending = false;
 
-  // Show RSVP section
-  if (showRsvpBtn && rsvpView) {
+  // Show RSVP section and hide preview permanently
+  if (showRsvpBtn && previewView && rsvpView) {
     showRsvpBtn.addEventListener("click", () => {
+      previewView.classList.add("hidden");
       rsvpView.classList.remove("hidden");
       rsvpView.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   }
 
-  // Make attend available to inline onclick
+  // Yes/No buttons
   window.attend = function (choice) {
     isAttending = choice;
     attendingField.value = choice ? "Yes" : "No";
@@ -29,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
     form.classList.remove("hidden");
     attendingDetails.style.display = choice ? "block" : "none";
 
-    // If "No", set counts to 0 (optional)
     if (!choice) {
       const adults = document.getElementById("adults");
       const kids = document.getElementById("kids");
@@ -38,14 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  // After submission redirect: show thank-you
+  // After redirect: show thank you + hide preview always
   (function showThanksIfRedirected() {
     const params = new URLSearchParams(window.location.search);
     const submitted = params.get("submitted");
     const attending = params.get("attending");
 
     if (submitted === "1") {
-      // Ensure RSVP section is visible
+      if (previewView) previewView.classList.add("hidden");
       if (rsvpView) rsvpView.classList.remove("hidden");
 
       if (step1) step1.style.display = "none";
@@ -57,15 +58,13 @@ document.addEventListener("DOMContentLoaded", () => {
             ? "Thank you for letting us know 💖"
             : "Thank you for your RSVP 💖";
       }
-
       if (afterSubmit) afterSubmit.classList.remove("hidden");
 
-      // Scroll to RSVP card
       rsvpView.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   })();
 
-  // Before form submit, set redirect URL with attending choice
+  // Before submit: set redirect URL with attending choice
   if (form && redirectField) {
     form.addEventListener("submit", function () {
       const attending = attendingField?.value || (isAttending ? "Yes" : "No");

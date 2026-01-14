@@ -14,82 +14,113 @@ body {
   box-sizing: border-box;
 }
 
-/* ---------- Invite view ---------- */
+/* ---------- Invitation View ---------- */
 .invite-view {
-  width: min(95vw, 520px);
+  width: min(95vw, 560px);
   text-align: center;
 }
 
-.title {
-  margin: 14px 0 6px 0;
-  font-size: 1.6em;
+.envelope-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.subtitle {
-  margin: 0 0 14px 0;
-  color: #555;
+/* Envelope container */
+.envelope {
+  position: relative;
+  width: min(92vw, 560px);
+  height: min(58vw, 360px);
+  max-height: 360px;
+  border-radius: 18px;
+  margin: 0 auto 14px auto;
+}
+
+/* Background plate behind invite */
+.env-back {
+  position: absolute;
+  inset: 0;
+  background: #ffe9e1;
+  border-radius: 18px;
+  box-shadow: 0 14px 34px rgba(0,0,0,0.16);
+  border: 2px solid rgba(0,0,0,0.05);
+}
+
+/* Front plate tint */
+.env-front {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255,127,80,0.10), rgba(255,87,34,0.08));
+  border: 2px solid rgba(0,0,0,0.04);
+  pointer-events: none;
+}
+
+/* Flap */
+.env-flap {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  top: 0;
+  height: 52%;
+  border-radius: 16px 16px 10px 10px;
+  background: rgba(255,255,255,0.55);
+  clip-path: polygon(0 0, 100% 0, 50% 78%);
+  transform-origin: top center;
+  transform: rotateX(0deg);
+  transition: transform 700ms ease;
+  pointer-events: none;
+}
+
+/* Invitation card (slides out) */
+.invite-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 86%;
+  height: 86%;
+  transform: translate(-50%, -40%); /* initial sits inside envelope */
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(0,0,0,0.18);
+  transition: transform 850ms ease;
+}
+
+/* Make sure invite is always fully visible */
+.invite-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: white;
+}
+
+/* Open state animation */
+.envelope.open .invite-card {
+  transform: translate(-50%, -72%); /* slide up */
+}
+
+.envelope.open .env-flap {
+  transform: rotateX(55deg);
 }
 
 .invite-actions button {
   width: 100%;
-  margin-top: 10px;
+  padding: 0.95em;
+  margin: 0.45em 0;
+  border: none;
+  border-radius: 12px;
+  background-color: #ff7f50;
+  color: white;
+  font-size: 1.05em;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.05s ease;
 }
 
-/* Envelope */
-.envelope {
-  position: relative;
-  width: min(90vw, 520px);
-  height: min(55vw, 320px);
-  margin: 0 auto;
-  perspective: 900px;
-}
+.invite-actions button:hover { background-color: #ff5722; }
+.invite-actions button:active { transform: scale(0.99); }
 
-.envelope-back {
-  position: absolute;
-  inset: 0;
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
-  border: 2px solid rgba(0,0,0,0.07);
-}
-
-.envelope-front {
-  position: absolute;
-  inset: 0;
-  border-radius: 16px;
-  background:
-    linear-gradient(135deg, rgba(255,127,80,0.15), rgba(255,87,34,0.12));
-  overflow: hidden;
-  border: 2px solid rgba(0,0,0,0.06);
-}
-
-/* Invite card that slides out */
-.invite-card {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%) translateY(34%);
-  width: 92%;
-  height: 92%;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.18);
-  transition: transform 800ms ease;
-  background: #fff;
-}
-
-.invite-img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;   /* ensures full invite visible */
-  background: #fff;
-}
-
-/* Open state */
-.envelope.open .invite-card {
-  transform: translateX(-50%) translateY(-18%);
-}
-
-/* ---------- RSVP card ---------- */
+/* ---------- RSVP View ---------- */
 .rsvp-view {
   width: min(95vw, 520px);
 }
@@ -102,6 +133,11 @@ body {
   text-align: center;
   width: 100%;
   backdrop-filter: blur(3px);
+}
+
+.card h1 {
+  margin: 0 0 6px 0;
+  font-size: 1.6em;
 }
 
 .event-subtitle {
@@ -180,6 +216,7 @@ input[type="text"]:focus, input[type="number"]:focus {
 
 .calendar-btn:hover { background-color: #3e8e41; }
 
+/* Mobile tweaks */
 @media (max-width: 520px) {
   .two-col { grid-template-columns: 1fr; }
 }

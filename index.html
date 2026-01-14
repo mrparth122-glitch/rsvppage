@@ -18,7 +18,16 @@
     <button onclick="attend(false)">No 😢</button>
   </div>
 
-  <form id="rsvpForm" class="hidden">
+  <!-- UPDATED FORM -->
+  <form 
+    id="rsvpForm" 
+    class="hidden"
+    action="https://submit.formspark.io/7OshMYxJq"
+    method="POST"
+  >
+    <!-- Honeypot spam protection -->
+    <input type="text" name="_hp" style="display:none">
+
     <input type="hidden" name="attending" id="attendingField">
 
     <input type="text" name="fullName" placeholder="Full Name" required>

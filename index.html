@@ -10,65 +10,50 @@
 
 <div class="page">
 
-  <!-- PREVIEW (shown first, hidden after user clicks RSVP Now) -->
+  <!-- INVITATION PREVIEW -->
   <section id="previewView" class="preview-view">
-    <div class="preview-card">
-      <div class="envelope-look" aria-hidden="true"></div>
-
-      <div class="invite-thumb">
-        <img src="background.jpg" alt="Invitation preview" />
-      </div>
+    <div class="invite-container">
+      <img src="background.jpg" alt="Invitation" />
     </div>
 
-    <div class="actions">
-      <button type="button" id="showRsvpBtn">RSVP Now ✅</button>
-    </div>
+    <button type="button" id="showRsvpBtn">RSVP Now ✅</button>
   </section>
 
-  <!-- RSVP FORM CARD -->
-  <section id="rsvpView" class="rsvp-view hidden">
+  <!-- RSVP SECTION -->
+  <section id="rsvpView" class="hidden">
     <div class="card">
       <h1>🎉 Mansi's Baby Shower 🎉</h1>
       <h2 class="event-subtitle">Patel family invites you to join the festivities</h2>
 
-      <div id="step1">
-        <p>Will you attend?</p>
-        <button type="button" onclick="attend(true)">Yes 🎊</button>
-        <button type="button" onclick="attend(false)">No 😢</button>
+      <div id="step1" class="choice-group">
+        <p class="question">Will you attend?</p>
+        <button class="choice yes" onclick="attend(true)">Yes 🎊</button>
+        <button class="choice no" onclick="attend(false)">No 😢</button>
       </div>
 
       <form
         id="rsvpForm"
         class="hidden"
-        action="https://submit-form.com/7OshMYxJq"
         method="POST"
+        action="https://submit-form.com/7OshMYxJq"
       >
-        <!-- Honeypot -->
-        <label style="display:none">
-          Do not fill
-          <input type="text" name="_hp" aria-hidden="true" tabindex="-1" autocomplete="off" />
-        </label>
-
-        <!-- Redirect back after submit -->
         <input type="hidden" name="_redirect" id="redirectField"
-          value="https://mrparth122-glitch.github.io/rsvppage/?submitted=1" />
-
-        <input type="hidden" name="attending" id="attendingField" />
+          value="https://mrparth122-glitch.github.io/rsvppage/?submitted=1">
+        <input type="hidden" name="attending" id="attendingField">
 
         <div class="form-group">
-          <label for="fullName">Full Name</label>
-          <input type="text" id="fullName" name="fullName" placeholder="Full Name" required />
+          <label>Full Name</label>
+          <input type="text" name="fullName" required>
         </div>
 
         <div id="attendingDetails" class="form-group two-col">
-          <div class="field">
-            <label for="adults">Adults</label>
-            <input type="number" id="adults" name="adults" min="1" value="1" />
+          <div>
+            <label>Adults</label>
+            <input type="number" name="adults" value="1" min="1">
           </div>
-
-          <div class="field">
-            <label for="kids">Kids</label>
-            <input type="number" id="kids" name="kids" min="0" value="0" />
+          <div>
+            <label>Kids</label>
+            <input type="number" name="kids" value="0" min="0">
           </div>
         </div>
 
@@ -76,8 +61,10 @@
       </form>
 
       <div id="afterSubmit" class="hidden">
-        <p id="thanksMsg">Thank you for your RSVP 💖</p>
-        <a href="/rsvppage/mansi-baby-shower.ics" class="calendar-btn">📅 Add Event to Your Calendar</a>
+        <p>Thank you for your RSVP 💖</p>
+        <a href="/rsvppage/mansi-baby-shower.ics" class="calendar-btn">
+          📅 Add Event to Your Calendar
+        </a>
       </div>
     </div>
   </section>

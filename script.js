@@ -6,7 +6,8 @@ const afterSubmit = document.getElementById("afterSubmit");
 
 let isAttending = false;
 
-function attend(choice) {
+// 👇 Make function global
+window.attend = function (choice) {
   isAttending = choice;
   attendingField.value = choice ? "Yes" : "No";
 
@@ -14,10 +15,10 @@ function attend(choice) {
   form.classList.remove("hidden");
 
   attendingDetails.style.display = choice ? "block" : "none";
-}
+};
 
 form.addEventListener("submit", function (e) {
-  e.preventDefault(); // prevent page reload
+  e.preventDefault();
 
   const formData = new FormData(form);
 
@@ -30,7 +31,8 @@ form.addEventListener("submit", function (e) {
   })
   .then(response => response.json())
   .then(data => {
-    console.log("Formspark response:", data); // Verify submission in console
+    console.log("Formspark response:", data);
+
     form.classList.add("hidden");
 
     if (isAttending) {

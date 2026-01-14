@@ -52,14 +52,15 @@
           <input type="text" name="fullName" required>
         </div>
 
+        <!-- NOTE: min is 0 so "No" doesn't break validation -->
         <div id="attendingDetails" class="form-group two-col">
           <div>
             <label>Adults</label>
-            <input type="number" name="adults" value="1" min="1">
+            <input type="number" id="adultsField" name="adults" value="1" min="0">
           </div>
           <div>
             <label>Kids</label>
-            <input type="number" name="kids" value="0" min="0">
+            <input type="number" id="kidsField" name="kids" value="0" min="0">
           </div>
         </div>
 

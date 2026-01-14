@@ -1,56 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mansi's Baby Shower RSVP</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<form id="rsvpForm" class="hidden" method="POST">
+  <!-- Honeypot spam protection -->
+  <label style="display:none">Do not fill
+    <input type="text" name="_hp" aria-hidden="true">
+  </label>
 
-<div class="card">
-  <h1>🎉 Mansi's Baby Shower 🎉</h1>
-  <h2 class="event-subtitle">Patel family invites you to join the festivities</h2>
+  <input type="hidden" name="attending" id="attendingField">
 
-  <div id="step1">
-    <p>Will you attend?</p>
-    <button onclick="attend(true)">Yes 🎊</button>
-    <button onclick="attend(false)">No 😢</button>
+  <label for="fullName">Full Name</label>
+  <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
+
+  <div id="attendingDetails">
+    <label for="adults">Adults</label>
+    <input type="number" id="adults" name="adults" min="1" value="1">
+
+    <label for="kids">Kids</label>
+    <input type="number" id="kids" name="kids" min="0" value="0">
   </div>
 
-  <form 
-    id="rsvpForm" 
-    class="hidden"
-    method="POST"
-  >
-    <!-- Honeypot spam protection -->
-    <input type="text" name="_hp" style="display:none">
-
-    <input type="hidden" name="attending" id="attendingField">
-
-    <label for="fullName">Full Name</label>
-    <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
-
-    <div id="attendingDetails">
-      <label for="adults">Adults</label>
-      <input type="number" id="adults" name="adults" min="1" value="1">
-
-      <label for="kids">Kids</label>
-      <input type="number" id="kids" name="kids" min="0" value="0">
-    </div>
-
-    <button type="submit">Submit RSVP ✅</button>
-  </form>
-
-  <div id="afterSubmit" class="hidden">
-    <p>Thank you for your RSVP 💖</p>
-
-    <a href="/rsvppage/mansi-baby-shower.ics" class="calendar-btn">
-      📅 Add Event to Your Calendar
-    </a>
-  </div>
-</div>
-
-<script src="script.js"></script>
-</body>
-</html>
+  <button type="submit">Submit RSVP ✅</button>
+</form>

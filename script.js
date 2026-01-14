@@ -3,57 +3,53 @@ const form = document.getElementById("rsvpForm");
 const attendingField = document.getElementById("attendingField");
 const attendingDetails = document.getElementById("attendingDetails");
 const afterSubmit = document.getElementById("afterSubmit");
+const redirectField = document.getElementById("redirectField");
+const thanksMsg = document.getElementById("thanksMsg");
 
 let isAttending = false;
 
-// Make attend available to inline onclick
+// Make function available to inline onclick
 window.attend = function (choice) {
   isAttending = choice;
   attendingField.value = choice ? "Yes" : "No";
 
   step1.style.display = "none";
   form.classList.remove("hidden");
-
   attendingDetails.style.display = choice ? "block" : "none";
+
+  // For "No", optionally reset counts
+  if (!choice) {
+    const adults = document.getElementById("adults");
+    const kids = document.getElementById("kids");
+    adults.value = 0;
+    kids.value = 0;
+  }
 };
 
-form.addEventListener("submit", async function (e) {
-  e.preventDefault();
+// After submission, Formspark redirects back with ?submitted=1&attending=Yes/No
+(function showThanksIfRedirected() {
+  const params = new URLSearchParams(window.location.search);
+  const submitted = params.get("submitted");
+  const attending = params.get("attending");
 
-  // Build JSON payload from the form fields
-  const formData = new FormData(form);
-  const payload = Object.fromEntries(formData.entries());
-
-  try {
-    const res = await fetch("https://submit-form.com/7OshMYxJq", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
-
-    // Helpful debug info
-    const text = await res.text();
-    console.log("Formspark status:", res.status);
-    console.log("Formspark raw response:", text);
-
-    if (!res.ok) {
-      alert("Something went wrong. Please try again.");
-      return;
-    }
-
+  if (submitted === "1") {
+    step1.style.display = "none";
     form.classList.add("hidden");
-    if (isAttending) {
-      afterSubmit.classList.remove("hidden");
+
+    if (attending === "No") {
+      thanksMsg.textContent = "Thank you for letting us know 💖";
     } else {
-      afterSubmit.innerHTML = "<p>Thank you for letting us know 💖</p>";
-      afterSubmit.classList.remove("hidden");
+      thanksMsg.textContent = "Thank you for your RSVP 💖";
     }
 
-  } catch (err) {
-    console.error("Submission failed:", err);
-    alert("Submission failed. Please check your connection.");
+    afterSubmit.classList.remove("hidden");
   }
+})();
+
+// Before the normal HTML submit happens, set redirect URL with attending choice
+form.addEventListener("submit", function () {
+  const attending = attendingField.value || (isAttending ? "Yes" : "No");
+  redirectField.value =
+    "https://mrparth122-glitch.github.io/rsvppage/?submitted=1&attending=" +
+    encodeURIComponent(attending);
 });

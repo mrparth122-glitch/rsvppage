@@ -33,36 +33,8 @@ body {
   margin-bottom: 1em;
 }
 
-/* Form groups */
-.form-group {
-  margin-bottom: 15px;
-  text-align: left;
-}
-
-.sub-group {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-label {
-  font-weight: 600;
-  margin-bottom: 5px;
-  display: block;
-}
-
-input[type="text"],
-input[type="number"] {
-  width: 100%;
-  padding: 10px 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-}
-
 /* Buttons */
-button, .submit-btn {
+button {
   padding: 0.8em;
   margin: 0.5em 0;
   border: none;
@@ -72,11 +44,43 @@ button, .submit-btn {
   font-size: 1em;
   cursor: pointer;
   width: 100%;
-  transition: 0.3s;
 }
 
-button:hover, .submit-btn:hover {
+button:hover {
   background-color: #ff5722;
+}
+
+/* Inputs + labels */
+input, label {
+  width: 100%;
+  margin: 0.4em 0;
+  padding: 0.5em;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+label {
+  padding: 0;
+  margin-top: 0.8em;
+  font-weight: 600;
+  text-align: left;
+}
+
+/* New: nicer spacing groups */
+.form-group {
+  text-align: left;
+  margin-top: 0.5em;
+}
+
+/* New: Adults/Kids side-by-side */
+.sub-group {
+  display: inline-block;
+  width: 48%;
+  vertical-align: top;
+}
+
+.sub-group + .sub-group {
+  margin-left: 4%;
 }
 
 /* Calendar button */
@@ -107,7 +111,11 @@ button:hover, .submit-btn:hover {
   }
 
   .sub-group {
-    flex-direction: column;
-    align-items: flex-start;
+    display: block;
+    width: 100%;
+  }
+
+  .sub-group + .sub-group {
+    margin-left: 0;
   }
 }

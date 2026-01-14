@@ -8,100 +8,80 @@
 </head>
 <body>
 
-<div class="card">
-  <h1>🎉 Mansi's Baby Shower 🎉</h1>
-  <h2 class="event-subtitle">Patel family invites you to join the festivities</h2>
+<!-- INVITE VIEW -->
+<section id="inviteView" class="invite-view">
+  <div class="envelope" id="envelope">
+    <div class="envelope-back"></div>
+    <div class="envelope-front"></div>
 
-  <!-- Step 1: Attend choice -->
-  <div id="step1">
-    <p>Will you attend?</p>
-    <button type="button" onclick="attend(true)">Yes 🎊</button>
-    <button type="button" onclick="attend(false)">No 😢</button>
+    <!-- The invitation "card" that slides out -->
+    <div class="invite-card" id="inviteCard">
+      <!-- Use your existing background.jpg as the actual invite image -->
+      <img src="background.jpg" alt="Invitation" class="invite-img">
+    </div>
   </div>
 
-  <!-- RSVP Form -->
-  <form
-    id="rsvpForm"
-    class="hidden"
-    method="POST"
-    action="https://submit-form.com/7OshMYxJq"
-  >
-    <!-- Honeypot spam protection -->
-    <label style="display:none">
-      Do not fill
-      <input
-        type="text"
-        name="_hp"
-        aria-hidden="true"
-        tabindex="-1"
-        autocomplete="off"
-      >
-    </label>
-
-    <!-- Redirect back after submit -->
-    <input
-      type="hidden"
-      name="_redirect"
-      id="redirectField"
-      value="https://mrparth122-glitch.github.io/rsvppage/?submitted=1"
-    >
-
-    <!-- Attending value -->
-    <input type="hidden" name="attending" id="attendingField">
-
-    <!-- Full Name -->
-    <div class="form-group">
-      <label for="fullName">Full Name</label>
-      <input
-        type="text"
-        id="fullName"
-        name="fullName"
-        placeholder="Full Name"
-        required
-      >
-    </div>
-
-    <!-- Adults / Kids (Grid layout) -->
-    <div id="attendingDetails" class="form-group two-col">
-      <div class="field">
-        <label for="adults">Adults</label>
-        <input
-          type="number"
-          id="adults"
-          name="adults"
-          min="1"
-          value="1"
-        >
-      </div>
-
-      <div class="field">
-        <label for="kids">Kids</label>
-        <input
-          type="number"
-          id="kids"
-          name="kids"
-          min="0"
-          value="0"
-        >
-      </div>
-    </div>
-
-    <!-- Submit -->
-    <button type="submit">Submit RSVP ✅</button>
-  </form>
-
-  <!-- Thank you -->
-  <div id="afterSubmit" class="hidden">
-    <p id="thanksMsg">Thank you for your RSVP 💖</p>
-
-    <a
-      href="/rsvppage/mansi-baby-shower.ics"
-      class="calendar-btn"
-    >
-      📅 Add Event to Your Calendar
-    </a>
+  <div class="invite-actions">
+    <h1 class="title">Mansi's Baby Shower</h1>
+    <p class="subtitle">Tap to open the invitation, then RSVP</p>
+    <button type="button" id="openInviteBtn">Open Invitation ✉️</button>
+    <button type="button" id="rsvpBtn" class="hidden">RSVP Now ✅</button>
   </div>
-</div>
+</section>
+
+<!-- RSVP VIEW -->
+<section id="rsvpView" class="rsvp-view hidden">
+  <div class="card">
+    <h1>🎉 Mansi's Baby Shower 🎉</h1>
+    <h2 class="event-subtitle">Patel family invites you to join the festivities</h2>
+
+    <div id="step1">
+      <p>Will you attend?</p>
+      <button type="button" onclick="attend(true)">Yes 🎊</button>
+      <button type="button" onclick="attend(false)">No 😢</button>
+    </div>
+
+    <form
+      id="rsvpForm"
+      class="hidden"
+      method="POST"
+      action="https://submit-form.com/7OshMYxJq"
+    >
+      <!-- Honeypot -->
+      <label style="display:none">
+        Do not fill
+        <input type="text" name="_hp" aria-hidden="true" tabindex="-1" autocomplete="off">
+      </label>
+
+      <input type="hidden" name="_redirect" id="redirectField"
+        value="https://mrparth122-glitch.github.io/rsvppage/?submitted=1">
+      <input type="hidden" name="attending" id="attendingField">
+
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
+      </div>
+
+      <div id="attendingDetails" class="form-group two-col">
+        <div class="field">
+          <label for="adults">Adults</label>
+          <input type="number" id="adults" name="adults" min="1" value="1">
+        </div>
+        <div class="field">
+          <label for="kids">Kids</label>
+          <input type="number" id="kids" name="kids" min="0" value="0">
+        </div>
+      </div>
+
+      <button type="submit">Submit RSVP ✅</button>
+    </form>
+
+    <div id="afterSubmit" class="hidden">
+      <p id="thanksMsg">Thank you for your RSVP 💖</p>
+      <a href="/rsvppage/mansi-baby-shower.ics" class="calendar-btn">📅 Add Event to Your Calendar</a>
+    </div>
+  </div>
+</section>
 
 <script src="script.js"></script>
 </body>
